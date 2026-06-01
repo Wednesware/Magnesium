@@ -1,0 +1,3 @@
+{
+    "welcome_message": rf("README.md")
+}
