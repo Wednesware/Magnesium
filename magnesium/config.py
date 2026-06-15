@@ -18,10 +18,10 @@ class objectnotation:
         if not os.path.exists(path):
             raise ObjectNotationError(f"File not found: {path}")
         
-        self.data: any = eval(rf(path), {"rf": rf}) # type: ignore
-    def get(self, key: str, else_val: any = None) -> any: # type: ignore
+        self.data: any = eval(rf(path), {"rf": rf})
+    def get(self, key: str, else_val: any = None) -> any:
         return self.data.get(key, else_val)
-def getconf(key: str, else_value: any = ...) -> any: # type: ignore
+def getconf(key: str, else_value: any = ...) -> any:
     if not os.path.exists("config.pyon"):
         with error("Configuration file not found: config.pyon, creating one for you.") as error_log:
             with open("config.pyon", "w") as file:

@@ -3,12 +3,12 @@ from .color import color
 
 class log:
     def __init__(self, text: str) -> None:
-        self.text: str = text
+        self.text: str = text + color.reset
         self.parent: "log | None" = None
         self.children: list[log] = []
         self.level: int = 0
 
-    def sublog(self, text: str) -> log: # type: ignore
+    def sublog(self, text: str) -> log:
         sublog: log = self.__class__(text)
         sublog.parent = self
         self.children.append(sublog)
