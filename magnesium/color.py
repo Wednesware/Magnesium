@@ -6,7 +6,7 @@ class color:
     underline: str = "\033[4m"
     strikethrough: str = "\033[9m"
 
-    _CSS_COLORS: dict[str, tuple[int, int, int] = {
+    _CSS_COLORS: dict[str, tuple[int, int, int]] = {
         "alice_blue": (240, 248, 255),
         "antique_white": (250, 235, 215),
         "aqua": (0, 255, 255),
@@ -157,6 +157,6 @@ class color:
     def bg_rgb(r: int, g: int, b: int) -> str:
         return f"\033[48;2;{r};{g};{b}m"
 
-for name, (r, g, b) in _CSS_COLORS.items():
+for name, (r, g, b) in color._CSS_COLORS.items():
     setattr(color, f"ansi{name}", (r, g, b))
     setattr(color, name, f"\033[38;2;{r};{g};{b}m")
