@@ -1,6 +1,7 @@
 import os
 
 from .logging import error
+from .filepath import filepath
 
 
 class ObjectNotationError(Exception):
@@ -13,22 +14,22 @@ def rf(path: str) -> str:
         return file.read()
 
 class objectnotation:
-    def __init__(self, path: str) -> None:
-        self.path: str = path
-        if not os.path.exists(path):
-            raise ObjectNotationError(f"File not found: {path}")
+    def __init__(self, path: filepath | str) -> None:
+        self.path: filepath = filepath(path)
+        if not self.path.exists():
+            raise ObjectNotationError(f"File not found: {self.path}")
         
-        self.data: any = eval(rf(path), {"rf": rf})
+        self.data: any = eval(path.read(), {"rf": rf})
     def get(self, key: str, else_val: any = None) -> any:
         return self.data.get(key, else_val)
 def getconf(key: str, else_value: any = ...) -> any:
-    if not os.path.exists("config.pyon"):
+    config_file_path: filepath = filepath("config.pyon")
+    if not config_file_path.exists():
         with error("Configuration file not found: config.pyon, creating one for you.") as error_log:
-            with open("config.pyon", "w") as file:
-                file.write("{}")
-            error_log.sublog("'config.pyon' created successfully.")
-    if key not in objectnotation("config.pyon").data:
+            config_file_path.write("{}")
+            error_log.sublog(f"'{config_file_path.name}' created successfully.")
+    if key not in objectnotation(config_file_path).data:
         if else_value is not ...:
             return else_value
         raise ObjectNotationError(f"Configuration key not found: {key}")
-    return objectnotation("config.pyon").get(key)
+    return objectnotation(config_file_path).get(key)
