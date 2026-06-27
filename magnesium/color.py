@@ -158,5 +158,5 @@ class color:
         return f"\033[48;2;{r};{g};{b}m"
 
 for name, (r, g, b) in color._CSS_COLORS.items():
-    setattr(color, f"ansi{name}", (r, g, b))
+    setattr(color, f"rgb{name}", (r, g, b))
     setattr(color, name, f"\033[38;2;{r};{g};{b}m")
