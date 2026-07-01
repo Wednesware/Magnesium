@@ -1,4 +1,4 @@
-class color:
+class Color:
     reset: str = "\033[0m"
 
     bold: str = "\033[1m"
