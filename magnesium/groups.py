@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from .logging import log
 from .color import Color
 

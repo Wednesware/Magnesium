@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 class Color:
     reset: str = "\033[0m"
 

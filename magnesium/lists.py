@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 from .groups import Group
+
 
 class ListNav(list):
     def lm(self) -> int:
