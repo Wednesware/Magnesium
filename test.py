@@ -1,5 +1,6 @@
 from magnesium.logging import *
 from magnesium.handle import *
+from magnesium.config import *
 
 @safe
 def main() -> None:

@@ -1,4 +1,4 @@
-from magnesium.filepath import filepath
+from magnesium.filepath import FilePath
 
 
-print(filepath("magnesium/src") / ".." / "__init__.py")
+print(FilePath("magnesium/src") / ".." / "__init__.py")
