@@ -29,7 +29,7 @@ class Group:
         if self.member_added(obj.obj if hasattr(obj, "obj") else obj, add_member_log):
             self.members.append(obj)
             if self.debug_group:
-                add_member_log.sublog(f"{Color.bright_green}member added successfully!")
+                add_member_log.sublog(f"{Color.light_green}member added successfully!")
                 add_member_log.print()
         elif self.debug_group:
             add_member_log.sublog(f"{Color.red}member addition cancelled")
@@ -45,9 +45,9 @@ class Group:
                     rule_log.sublog(f"{Color.red}evaluation unsuccessful (returned falsy value)")
                 return False
             if self.debug_group and add_member_log:
-                rule_log.sublog(f"{Color.bright_green}evaluation successful (returned truthy value)")
+                rule_log.sublog(f"{Color.light_green}evaluation successful (returned truthy value)")
         if self.debug_group and add_member_log:
-            add_member_log.sublog(f"{Color.bright_green}all rules passed successfully, returning true")
+            add_member_log.sublog(f"{Color.light_green}all rules passed successfully, returning true")
         return True
     def remove_member(self, obj: any) -> None:
         remove_member_log: log = log(f"{Color.blue}attempting to remove member from group '{self.label}': {obj} repr={repr(obj)} label='{obj.label if hasattr(obj, 'label') else 'null'}'") if self.debug_group else None
@@ -60,7 +60,7 @@ class Group:
             remove_member_log.sublog(f"{Color.red}member not found, nothing was removed.") if remove_member_log else ...
             remove_member_log.print() if remove_member_log else ...
             return
-        remove_member_log.sublog(f"{Color.bright_green}member removed successfully!") if remove_member_log else ...
+        remove_member_log.sublog(f"{Color.light_green}member removed successfully!") if remove_member_log else ...
         remove_member_log.print() if remove_member_log else ...
     def find_member(self, label: str) -> None:
         find_member_log: log = log(f"{Color.blue}attempting to find member in group '{self.label}': label='{label}'") if self.debug_group else None
@@ -69,7 +69,7 @@ class Group:
             if not hasattr(member, "label"):
                 find_member_log.sublog(f"{Color.yellow}/!\\ member has no label") if find_member_log else ...
             if member.label == label:
-                find_member_log.sublog(f"{Color.bright_green}found matching member: {member} repr={repr(member)} label='{label}'") if find_member_log else ...
+                find_member_log.sublog(f"{Color.light_green}found matching member: {member} repr={repr(member)} label='{label}'") if find_member_log else ...
                 find_member_log.print() if find_member_log else ...
                 return member
         else:
